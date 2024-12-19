@@ -27,7 +27,7 @@ host = '127.0.0.1'
 port = 3001
 
 [[chains]]
-id = 'penumbra-local-devnet-x249afa77'
+id = 'penumbra-local-devnet-xf1613e81'
 type = 'Penumbra'
 stub_key_name = 'fake'
 rpc_addr = 'http://localhost:26657'
