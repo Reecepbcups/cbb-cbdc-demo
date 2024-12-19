@@ -1,0 +1,17 @@
+{
+    "type": "cosmos",
+    "value": {
+        "key": "default",
+        "chain-id": "sei",
+        "rpc-addr": "http://127.0.0.1:27657",
+        "account-prefix": "sei",
+        "keyring-backend": "test",
+        "gas-adjustment": 2.0,
+        "gas-prices": "0.01usei",
+        "debug": true,
+        "timeout": "20s",
+        "output-format": "json",
+        "signing-algorithm": "sr25519",
+        "sign-mode": "direct"
+    }
+}

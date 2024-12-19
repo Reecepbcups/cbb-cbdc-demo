@@ -1,0 +1,71 @@
+# https://guide.penumbra.zone/dev/ibc
+[global]
+log_level = 'debug'
+
+[mode]
+
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = false
+
+[mode.connections]
+enabled = true
+
+[mode.channels]
+enabled = true
+
+[mode.packets]
+enabled = true
+clear_interval = 100
+clear_on_start = true
+tx_confirmation = true
+
+[telemetry]
+enabled = true
+host = '127.0.0.1'
+port = 3001
+
+[[chains]]
+id = 'penumbra-local-devnet-x249afa77'
+type = 'Penumbra'
+stub_key_name = 'fake'
+rpc_addr = 'http://localhost:26657'
+grpc_addr = 'http://localhost:8080'
+# event_source = { mode = 'pull', url = 'ws://127.0.0.1:26657/websocket', interval = '1s' }
+event_source = { mode = 'pull', interval = '1s' }
+rpc_timeout = '15s'
+clock_drift = '5s'
+client_refresh_rate = '1/3'
+trust_threshold = { numerator = '1', denominator = '3' }
+kms_config = { spend_key = "penumbraspendkey16dzuksmmlc403md30kr5nhd3eyptwh0w270sfgl5prdlay79862sv26a6m" }
+view_service_storage_dir = "/home/reece/.local/share/pcli-localhost2"
+
+[[chains]]
+type = "CosmosSdk"
+id = "localcosmos-1"
+gas_price = { price = 0.01, denom = 'uatom' }
+rpc_addr = "http://127.0.0.1:28657/"
+grpc_addr = "http://127.0.0.1:9290/"
+rpc_timeout = "10s"
+trusted_node = true
+account_prefix = "sei"
+key_name = ""
+key_store_type = "Test"
+store_prefix = "ibc"
+default_gas = 200000
+max_gas = 400000
+gas_multiplier = 2.5
+max_msg_num = 30
+max_tx_size = 180000
+max_grpc_decoding_size = 33554432
+query_packets_chunk_size = 50
+clock_drift = "5s"
+max_block_time = "30s"
+client_refresh_rate = "1/3"
+ccv_consumer_chain = false
+sequential_batch_tx = false
+# allow_ccq = true
+# compat_mode = '0.37'
+memo_prefix = 'Hello from Penumbra 😎🌘'
+event_source = { mode = 'push', url = 'ws://127.0.0.1:28657/websocket', interval = '100ms' } # This was added from origianl
