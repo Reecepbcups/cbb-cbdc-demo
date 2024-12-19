@@ -2,6 +2,8 @@
 
 This demo walks through launching an ERC20 and sending it to the [shielded Penumbra network](https://members.delphidigital.io/projects/penumbra), with the ability to share a viewing key for balances via [threshold homomorphic encryption](https://protocol.penumbra.zone/main/crypto/flow-encryption/threshold-encryption.html).
 
+Document: https://github.com/reecepbcups/cbb-cbdc-demo
+
 ## Architecture
 
 The demo uses 3 networks, a Cosmos EVM, an Intermediate chain, and the destination, Penumbra. The EVM is used for the ERC20 token which is launched. This also has a native token representation via a solidity pointer contract. The intermediate chain is only used for this demo to allow for the EVM to interface with Penumbra. A production based system would remove the need for the intermediate chain and 1 of the relayer processes, reducing the infrastructure complexity.
@@ -251,7 +253,8 @@ ADMIN=`sei_interact_w_password seid keys show admin -a` && echo "Admin: $ADMIN"
 DENOM=`sei_node_interact seid q tokenfactory denoms-from-creator ${ADMIN} --node=http://127.0.0.1:27657 -o=json | jq -r .denoms[-1]` && echo "Denom: $DENOM"
 
 # IBC transfer via solidity precompile
-sei_interact_w_password seid tx evm call-precompile ibc transferWithDefaultTimeout cosmos1hj5fveer5cjtn4wd6wstzugjfdxzl0xpxvjjvr transfer channel-0 ${DENOM} 50 "" --from=admin --evm-rpc="http://0.0.0.0:8545"
+sei_interact_w_password seid tx evm call-precompile ibc transferWithDefaultTimeout cosmos1hj5fveer5cjtn4wd6wstzugjfdxzl0xpxvjjvr \
+transfer channel-0 ${DENOM} 50 "" --from=admin --evm-rpc="http://0.0.0.0:8545"
 # or normally: sei_interact_w_password seid tx ibc-transfer transfer transfer channel-0 cosmos1hj5fveer5cjtn4wd6wstzugjfdxzl0xpxvjjvr 50${DENOM} --node=http://127.0.0.1:27657 --from=admin --fees=2000usei --yes
 
 code ./sei-evm/precompiles/ibc/IBC.sol
